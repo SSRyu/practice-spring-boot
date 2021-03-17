@@ -1,4 +1,4 @@
-package com.example.practicespringboot;
+package com.willowary.practicespringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
