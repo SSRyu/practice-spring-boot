@@ -2,12 +2,16 @@ package com.willowary.practicespringboot.service.posts;
 
 import com.willowary.practicespringboot.domain.posts.Posts;
 import com.willowary.practicespringboot.domain.posts.PostsRepository;
+import com.willowary.practicespringboot.web.dto.PostsListResponseDto;
 import com.willowary.practicespringboot.web.dto.PostsResponseDto;
 import com.willowary.practicespringboot.web.dto.PostsSaveRequestDto;
 import com.willowary.practicespringboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -37,5 +41,10 @@ public class PostsService {
         );
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
     }
 }
